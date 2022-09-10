@@ -1,10 +1,10 @@
 const express = require('express');
 const { AppDataSource } = require("./src/data-source")
-const PORT = 3005;
+require("dotenv").config();
+const PORT = process.env.PORT || 3000;
 const cors = require('cors')
 const mainRouter = require("./src/routes/index")
 const path = require('path')
-require("dotenv").config();
 
 AppDataSource.initialize()
     .then(async () => {
