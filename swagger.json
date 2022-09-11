@@ -139,6 +139,20 @@
           }
         }
       }
+    },
+    "/api/state/listOfState": {
+      "get": {
+        "summary": "List Of State",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "List of states"
+          },
+          "500": {
+            "description": "Something Went Wrong!!"
+          }
+        }
+      }
     }
   }
 }

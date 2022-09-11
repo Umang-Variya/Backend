@@ -30,3 +30,27 @@ exports.addState = async (req, res) => {
             );
     }
 }
+
+exports.StateList = async (req, res) => {
+    try {
+
+        const listOfState = await StateRepository.createQueryBuilder("states")
+            .select()
+            .execute();
+
+        return res
+            .status(201)
+            .send(
+                CreateSuccessResponse(
+                    `List of states`,
+                    listOfState
+                )
+            );
+    } catch (error) {
+        return res
+            .status(500)
+            .json(CreateErrorResponse("listOfUser", `${error}`, "Something Went Wrong!!"));
+    }
+}
+
+
