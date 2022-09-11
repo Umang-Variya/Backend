@@ -11,7 +11,7 @@ const AppDataSource = new typeorm.DataSource({
   database: process.env.DB_DATABASE,
   synchronize: true,
   logging: false,
-  entities: [require("./entity/users.entity")],
+  entities: [require("./entity/users.entity"),require("./entity/data.entity"),require("./entity/state.entity")],
   migrations: [],
   subscribers: [],
 });
