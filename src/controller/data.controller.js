@@ -49,7 +49,7 @@ exports.listOfData = async (req, res) => {
             .status(201)
             .send(
                 CreateSuccessResponse(
-                    `List of Users`,
+                    `List of Current Affair`,
                     result
                 )
             );

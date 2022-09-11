@@ -18,6 +18,7 @@
     "jsonwebtoken": "^8.5.1",
     "pg": "^8.8.0",
     "reflect-metadata": "^0.1.13",
+    "swagger-ui-express": "^4.5.0",
     "typeorm": "^0.3.9"
   }
 }

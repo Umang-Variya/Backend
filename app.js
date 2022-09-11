@@ -5,6 +5,8 @@ const PORT = process.env.PORT || 3000;
 const cors = require('cors')
 const mainRouter = require("./src/routes/index")
 const path = require('path')
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
 
 AppDataSource.initialize()
     .then(async () => {
@@ -29,6 +31,7 @@ AppDataSource.initialize()
         app.use(cors({ origin: true, credentials: true }));
 
         app.use("/", mainRouter);
+        app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
         app.set('view engine', 'ejs');
 
         app.listen(PORT, (error) => {

@@ -1,0 +1,144 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Batchmate",
+    "version": "1.0.0",
+    "description": "Backend API for Batchmate"
+  },
+  "servers": [
+    {
+      "url": "https://batchmate.herokuapp.com"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "Authorization": {
+        "type": "http",
+        "scheme": "bearer",
+        "in": "header"
+      }
+    }
+  },
+  "security": [
+    {
+      "Authorization": []
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/api/auth/login": {
+      "post": {
+        "summary": "login",
+        "description": "Login",
+        "produces": [
+          "application/json"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "example": "admin@gmail.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "admin"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Login successfully",
+            "content": {
+              "application/json": {
+                "type": "string"
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid Credentials"
+          },
+          "500": {
+            "description": "Something Went Wrong!!"
+          }
+        }
+      }
+    },
+    "/api/data/addData": {
+      "post": {
+        "summary": "Add current affair data",
+        "description": "Add current affair data",
+        "produces": [
+          "application/json"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "state_id": {
+                    "type": "number",
+                    "example": "1",
+                    "description":"Enter here state id"
+                  },
+                  "date_of_current_affair": {
+                    "type": "string",
+                    "example": "10-09-2022"
+                  },
+                  "content": {
+                    "type": "string",
+                    "example": "Chennai International Airport ranks 8th in global list for on time performance"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Current affair is added successfully",
+            "content": {
+              "application/json": {
+                "type": "string"
+              }
+            }
+          },
+          "500": {
+            "description": "Something Went Wrong!!"
+          }
+        }
+      }
+    },
+    "/api/data/list?stateName": {
+      "get": {
+        "summary": "Verify user email",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "stateName",
+            "in": "query",
+            "type": "string",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of Current Affair"
+          },
+          "500": {
+            "description": "Something Went Wrong!!"
+          }
+        }
+      }
+    }
+  }
+}
