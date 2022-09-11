@@ -120,7 +120,7 @@
     },
     "/api/data/list?stateName": {
       "get": {
-        "summary": "Verify user email",
+        "summary": "List Of Current affair",
         "produces": ["application/json"],
         "parameters": [
           {
