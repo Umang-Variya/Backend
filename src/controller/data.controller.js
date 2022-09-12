@@ -35,16 +35,29 @@ exports.listOfData = async (req, res) => {
 
     let whereQuery = ""
 
-    const { stateName } = req.query
+    const { stateName, date } = req.query
 
     if (stateName) {
         whereQuery += ` AND b.name LIKE '%${stateName}%'`
+    }
+
+    if (date) {
+        whereQuery += ` AND a.date_of_current_affair LIKE '%${date}%'`
     }
 
     try {
 
         const result = await DataRepository.query("SELECT a.id ,a.date_of_current_affair,a.content,b.name,b.image,a.created_at  FROM currentaffair as a join states as b on b.id = a.state_id" + whereQuery)
 
+        if (result[0] == null) {
+            return res
+                .status(201)
+                .send(
+                    CreateSuccessResponse(
+                        `No result found!`,
+                    )
+                );
+        }
         return res
             .status(201)
             .send(

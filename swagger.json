@@ -118,13 +118,19 @@
         }
       }
     },
-    "/api/data/list?stateName": {
+    "/api/data/list?stateName?date": {
       "get": {
         "summary": "List Of Current affair",
         "produces": ["application/json"],
         "parameters": [
           {
             "name": "stateName",
+            "in": "query",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "date",
             "in": "query",
             "type": "string",
             "required": false
