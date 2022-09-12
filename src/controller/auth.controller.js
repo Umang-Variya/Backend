@@ -82,7 +82,8 @@ exports.signUp = async (req, res) => {
     const salt = bcrypt.genSaltSync(10);
     const hashedPwd = bcrypt.hashSync(req.body.password, salt);
     newAdminUser.password = hashedPwd;
-    newAdminUser.created_at = Date.now()
+    const date = new Date();
+    newAdminUser.created_at = date
     const AdminData = await UserRepository.save(newAdminUser);
     if (AdminData) {
       return res

@@ -9,7 +9,8 @@ const DataRepository = AppDataSource.getRepository("CurrentAffair");
 exports.addData = async (req, res) => {
     try {
         const addNewData = req.body;
-        addNewData.created_at = Date.now()
+        const date = new Date();
+        addNewData.created_at = date
         const stateData = await DataRepository.save(addNewData);
         if (stateData) {
             return res
@@ -36,6 +37,16 @@ exports.listOfData = async (req, res) => {
     let whereQuery = ""
 
     const { stateName, date } = req.query
+
+    if (date == "") {
+        return res
+            .status(201)
+            .send(
+                CreateSuccessResponse(
+                    `Please select date!`
+                )
+            );
+    }
 
     if (stateName) {
         whereQuery += ` AND b.name LIKE '%${stateName}%'`

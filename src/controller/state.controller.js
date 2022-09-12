@@ -9,8 +9,8 @@ const StateRepository = AppDataSource.getRepository("State");
 exports.addState = async (req, res) => {
     try {
         const newState = req.body;
-        newState.created_at = Date.now()
-        const stateData = await StateRepository.save(newState);
+        const date = new Date();
+        newState.created_at = date
         if (stateData) {
             return res
                 .status(201)
