@@ -58,7 +58,7 @@ exports.listOfData = async (req, res) => {
 
     try {
 
-        const result = await DataRepository.query("SELECT a.id ,a.date_of_current_affair,a.content,b.name,b.image,a.created_at  FROM currentaffair as a join states as b on b.id = a.state_id" + whereQuery)
+        const result = await DataRepository.query("SELECT a.date_of_current_affair,a.content,b.name,b.image,a.created_at  FROM currentaffair as a join states as b on b.id = a.state_id" + whereQuery)
 
         if (result[0] == null) {
             return res

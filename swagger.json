@@ -133,7 +133,7 @@
             "name": "date",
             "in": "query",
             "type": "string",
-            "required": true
+            "required": false
           }
         ],
         "responses": {
