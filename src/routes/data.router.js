@@ -5,6 +5,6 @@ const authMiddleware = require('../helpers/jwt');
 const DataRouter = express.Router();
 
 DataRouter.post("/addData", authMiddleware, addData);
-DataRouter.get("/list", authMiddleware, listOfData);
+DataRouter.get("/list", listOfData);
 
 module.exports = DataRouter;
