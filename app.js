@@ -31,7 +31,7 @@ AppDataSource.initialize()
         app.use(cors({ origin: true, credentials: true }));
 
         app.use("/", mainRouter);
-        // app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));// Developer purpose
+        app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));// Developer purpose
         app.set('view engine', 'ejs');
 
         app.listen(PORT, (error) => {
