@@ -4,11 +4,13 @@ const authMiddleware = (req, res, next) => {
   try {
     const authHeader = req.headers["authorization"];
     const token = authHeader && authHeader?.split(" ")[1];
-    if (!token) res.status(401).send("Unauthorized Access");
+    if (!token)
+      return res.status(401).send("Unauthorized Access");
     const tokenSecret = process.env.SECRET_KEY;
     if (tokenSecret && token) {
       jwt.verify(token, tokenSecret, (err, user) => {
-        if (err) res.status(403).send("Unauthorized Access!");
+        if (err)
+          return res.status(403).send("Unauthorized Access!");
         res.locals.token = token;
         next();
       });
