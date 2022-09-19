@@ -72,6 +72,52 @@
         }
       }
     },
+    "/api/auth/signup": {
+      "post": {
+        "summary": "SignUp user",
+        "description": "Registration",
+        "produces": ["application/json"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "firstName": {
+                    "type": "string",
+                    "example": "John"
+                  },
+                  "lastName": {
+                    "type": "string",
+                    "example": "Root"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "john@gmail.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "john123"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "signUp Successfully",
+            "content": {
+              "application/json": { "type": "string" }
+            }
+          },
+
+          "500": {
+            "description": "Something Went Wrong!!"
+          }
+        }
+      }
+    },
     "/api/data/addData": {
       "post": {
         "summary": "Add current affair data",

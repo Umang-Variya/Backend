@@ -5,6 +5,6 @@ const { LoginSchemaValidator } = require('../validators/login.validator');
 const AuthRouter = express.Router();
 
 AuthRouter.post("/login", LoginSchemaValidator, login);
-// AuthRouter.post("/signup", signUp);
+AuthRouter.post("/signup", signUp);
 
 module.exports = AuthRouter;

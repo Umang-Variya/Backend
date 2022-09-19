@@ -48,17 +48,15 @@ exports.listOfData = async (req, res) => {
             );
     }
 
-    if (stateName) {
-        whereQuery += ` AND b.name LIKE '%${stateName}%'`
-    }
-
     if (date) {
         whereQuery += ` AND a.date_of_current_affair LIKE '%${date}%'`
     }
 
     try {
 
-        const result = await DataRepository.query("SELECT a.date_of_current_affair,a.content,b.name,b.image,a.created_at  FROM currentaffair as a join states as b on b.id = a.state_id" + whereQuery)
+        const arr = []
+
+        const result = await DataRepository.query("SELECT a.state_id, a.date_of_current_affair,a.content,b.name,b.image,a.created_at  FROM currentaffair as a join states as b on b.id = a.state_id" + whereQuery)
 
         if (result[0] == null) {
             return res
@@ -69,12 +67,24 @@ exports.listOfData = async (req, res) => {
                     )
                 );
         }
+
+        result.map((elem) => {
+            let check = arr.filter(d => d.state_id === elem.state_id);
+            if (check.length === 0) {
+                let arr2 = result.filter(val => val.state_id === elem.state_id);
+                arr.push({
+                    ...elem,
+                    content: arr2.map(cont => { return cont.content })
+                })
+            }
+        })
+
         return res
             .status(201)
             .send(
                 CreateSuccessResponse(
                     `List of Current Affair`,
-                    result
+                    arr
                 )
             );
     } catch (error) {

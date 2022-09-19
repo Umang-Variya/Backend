@@ -78,31 +78,31 @@ exports.login = async (req, res) => {
 
 //-----------------------future signup------------------------------------------------
 
-// exports.signUp = async (req, res) => {
-//   try {
-//     const newAdminUser = req.body;
-//     const salt = bcrypt.genSaltSync(10);
-//     const hashedPwd = bcrypt.hashSync(req.body.password, salt);
-//     newAdminUser.password = hashedPwd;
-//     const date = new Date();
-//     newAdminUser.created_at = date
-//     const AdminData = await UserRepository.save(newAdminUser);
-//     if (AdminData) {
-//       return res
-//         .status(201)
-//         .send(
-//           CreateSuccessResponse(
-//             `Admin with email ${newAdminUser.email} is registered successfully`,
-//             AdminData
-//           )
-//         );
-//     }
+exports.signUp = async (req, res) => {
+  try {
+    const newAdminUser = req.body;
+    const salt = bcrypt.genSaltSync(10);
+    const hashedPwd = bcrypt.hashSync(req.body.password, salt);
+    newAdminUser.password = hashedPwd;
+    const date = new Date();
+    newAdminUser.created_at = date
+    const AdminData = await UserRepository.save(newAdminUser);
+    if (AdminData) {
+      return res
+        .status(201)
+        .send(
+          CreateSuccessResponse(
+            `${newAdminUser.email} is registered successfully`,
+            AdminData
+          )
+        );
+    }
 
-//   } catch (error) {
-//     return res
-//       .status(500)
-//       .json(
-//         CreateErrorResponse("SignUp", `${error}`, "Something Went Wrong!!")
-//       );
-//   }
-// };
+  } catch (error) {
+    return res
+      .status(500)
+      .json(
+        CreateErrorResponse("SignUp", `${error}`, "Something Went Wrong!!")
+      );
+  }
+};
