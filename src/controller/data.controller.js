@@ -74,7 +74,7 @@ exports.listOfData = async (req, res) => {
                 let arr2 = result.filter(val => val.state_id === elem.state_id);
                 arr.push({
                     ...elem,
-                    content: arr2.map(cont => { return cont.content })
+                    content: arr2.map(cont => { return { value: cont.content } })
                 })
             }
         })
